@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import yfinance as yf
+from scipy.stats import norm
 
 # Define available stocks (30)
 all_stocks = ['AAPL', 'TSLA', 'MSFT', 'AMZN', 'GOOG', 'META', 'NFLX', 'NVDA', 'IBM', 'AMD',
@@ -165,3 +166,17 @@ optimal_portfolio_weights = portfolio_weights[max_sharpe_idx]  # Use max Sharpe 
 plt.pie(optimal_portfolio_weights, labels=stocks, autopct='%1.1f%%', startangle=140)
 plt.title("Portfolio Weights for the Max Sharpe Ratio Portfolio")
 plt.show()
+
+# User Input for Value at Risk (VaR) and Expected Shortfall (ES)
+confidence_level = float(input("\nEnter confidence level for VaR and ES (e.g., 95 for 95% confidence): "))
+holding_period = 1  # Holding period of 1 day
+
+# Calculate VaR using the historical simulation method
+VaR = -np.percentile(daily_returns.sum(axis=1), 100 - confidence_level)
+
+# Calculate Expected Shortfall (ES)
+ES = -daily_returns[daily_returns.sum(axis=1) <= -VaR].mean().sum()
+
+# Print VaR and ES
+print(f"\nValue at Risk (VaR) at {confidence_level}% confidence level for {holding_period}-day holding period: {VaR:.2f}")
+print(f"Expected Shortfall (ES) at {confidence_level}% confidence level: {ES:.2f}")
