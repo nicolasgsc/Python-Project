@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import yfinance as yf
 
-# Define available stocks (30)
+# Define available stocks (31)
 all_stocks = ['AAPL', 'TSLA', 'MSFT', 'AMZN', 'GOOG', 'META', 'NFLX', 'NVDA', 'IBM', 'AMD',
               'BA', 'DIS', 'PFE', 'NVDA', 'INTC', 'V', 'MA', 'PYPL', 'GE', 'KO',
               'JNJ', 'PEP', 'T', 'XOM', 'CVX', 'WMT', 'UNH', 'MCD', 'INTU', 'CRM', 'TWTR']
