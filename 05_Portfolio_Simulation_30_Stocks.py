@@ -127,17 +127,21 @@ plt.legend()
 
 # User Input for Value at Risk (VaR) and Expected Shortfall (ES)
 confidence_level = float(input("\nEnter confidence level for VaR and ES (e.g., 95 for 95% confidence): "))
-holding_period = 1  # Holding period of 1 day
+holding_period = float(input("\nEnter holding period in days (e.g., 1 for 1 day, 5 for 5 days, 30 for 30 days): "))
 
 # Calculate VaR using the historical simulation method
 VaR = -np.percentile(daily_returns.sum(axis=1), 100 - confidence_level)
 
-# Calculate Expected Shortfall (ES)
-ES = -daily_returns[daily_returns.sum(axis=1) <= -VaR].mean().sum()
+# Scale VaR based on the holding period (assuming normal distribution)
+VaR_scaled = VaR * np.sqrt(holding_period)
 
-# Print VaR and ES
-print(f"\nValue at Risk (VaR) at {confidence_level}% confidence level for {holding_period}-day holding period: {VaR:.2f}")
-print(f"Expected Shortfall (ES) at {confidence_level}% confidence level: {ES:.2f}")
+# Calculate Expected Shortfall (ES) and scale it by the holding period
+ES = -daily_returns[daily_returns.sum(axis=1) <= -VaR].mean().sum()
+ES_scaled = ES * np.sqrt(holding_period)
+
+# Print VaR and ES with the holding period adjustment
+print(f"\nValue at Risk (VaR) at {confidence_level}% confidence level for a {holding_period}-day holding period: {VaR_scaled:.2f}")
+print(f"Expected Shortfall (ES) at {confidence_level}% confidence level for a {holding_period}-day holding period: {ES_scaled:.2f}")
 
 # Plot the Portfolio Weights for the optimal portfolio (Pie chart for selected portfolio)
 plt.figure(figsize=(8, 8))
@@ -145,3 +149,4 @@ optimal_portfolio_weights = portfolio_weights[max_sharpe_idx]  # Use max Sharpe 
 plt.pie(optimal_portfolio_weights, labels=stocks, autopct='%1.1f%%', startangle=140)
 plt.title("Portfolio Weights for the Max Sharpe Ratio Portfolio")
 plt.show()
+
