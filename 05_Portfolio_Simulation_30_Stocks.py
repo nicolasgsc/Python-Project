@@ -125,48 +125,6 @@ plt.xlabel('Volatility (Risk)')
 plt.ylabel('Return')
 plt.legend()
 
-# Dynamically adjust the maximum allowed volatility
-max_allowed_volatility = max(portfolio_metrics['Volatility'].max(), 1.0)
-
-# Validate user input for risk tolerance
-while True:
-    try:
-        max_risk = float(input(f"\nEnter your maximum acceptable risk (volatility, 0 to {max_allowed_volatility:.2f}): "))
-        if max_risk <= 0 or max_risk > max_allowed_volatility:
-            print(f"Please enter a value between 0 and {max_allowed_volatility:.2f}. Typical values are between 0.1 and 0.4.")
-            continue
-        break
-    except ValueError:
-        print("Invalid input. Please enter a valid number.")
-
-# Filter portfolios with volatility less than or equal to the user's input
-filtered_portfolios = portfolio_metrics[portfolio_metrics['Volatility'] <= max_risk]
-
-if not filtered_portfolios.empty:
-    # Find the portfolio with the highest return under the risk constraint
-    user_optimal_portfolio = filtered_portfolios.loc[filtered_portfolios['Return'].idxmax()]
-    print("\nOptimal Portfolio for your Risk Tolerance:")
-    print(user_optimal_portfolio)
-
-    # Highlight this portfolio on the plot
-    plt.scatter(user_optimal_portfolio['Volatility'], user_optimal_portfolio['Return'], color='green', label='User Optimal Portfolio', edgecolors='black')
-    plt.legend()
-    plt.show()
-
-    # Save user optimal portfolio to CSV
-    user_optimal_portfolio.to_frame().T.to_csv('user_optimal_portfolio.csv')
-    print("User optimal portfolio saved to 'user_optimal_portfolio.csv'.")
-else:
-    print("\nNo portfolios found within the specified risk tolerance.")
-    plt.show()
-
-# Plot the Portfolio Weights for the optimal portfolios (Pie chart for selected portfolio)
-plt.figure(figsize=(8, 8))
-optimal_portfolio_weights = portfolio_weights[max_sharpe_idx]  # Use max Sharpe Ratio portfolio for example
-plt.pie(optimal_portfolio_weights, labels=stocks, autopct='%1.1f%%', startangle=140)
-plt.title("Portfolio Weights for the Max Sharpe Ratio Portfolio")
-plt.show()
-
 # User Input for Value at Risk (VaR) and Expected Shortfall (ES)
 confidence_level = float(input("\nEnter confidence level for VaR and ES (e.g., 95 for 95% confidence): "))
 holding_period = 1  # Holding period of 1 day
@@ -180,3 +138,10 @@ ES = -daily_returns[daily_returns.sum(axis=1) <= -VaR].mean().sum()
 # Print VaR and ES
 print(f"\nValue at Risk (VaR) at {confidence_level}% confidence level for {holding_period}-day holding period: {VaR:.2f}")
 print(f"Expected Shortfall (ES) at {confidence_level}% confidence level: {ES:.2f}")
+
+# Plot the Portfolio Weights for the optimal portfolio (Pie chart for selected portfolio)
+plt.figure(figsize=(8, 8))
+optimal_portfolio_weights = portfolio_weights[max_sharpe_idx]  # Use max Sharpe Ratio portfolio for example
+plt.pie(optimal_portfolio_weights, labels=stocks, autopct='%1.1f%%', startangle=140)
+plt.title("Portfolio Weights for the Max Sharpe Ratio Portfolio")
+plt.show()
