@@ -3,10 +3,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import yfinance as yf
 
-# Define available stocks (30)
+# Define available stocks (31)
 all_stocks = ['AAPL', 'TSLA', 'MSFT', 'AMZN', 'GOOG', 'META', 'NFLX', 'NVDA', 'IBM', 'AMD',
               'BA', 'DIS', 'PFE', 'NVDA', 'INTC', 'V', 'MA', 'PYPL', 'GE', 'KO',
-              'JNJ', 'PEP', 'T', 'XOM', 'CVX', 'WMT', 'UNH', 'MCD', 'INTU', 'CRM']
+              'JNJ', 'PEP', 'T', 'XOM', 'CVX', 'WMT', 'UNH', 'MCD', 'INTU', 'CRM', 'TWTR']
 
 # Display available stock tickers for selection
 print("Available stocks:")
@@ -18,26 +18,36 @@ selected_stocks = []
 while len(selected_stocks) < 1 or len(selected_stocks) > 10:
     try:
         selected_stocks_input = input(f"\nEnter the stock numbers (separate by commas, up to 10 stocks): ")
+        
+        # Check for correct comma usage (not trailing commas, not missing commas)
+        if ',' not in selected_stocks_input:
+            print("Error: Please separate stock numbers with commas.")
+            continue
+        
+        # Split the input by commas, strip any spaces, and ensure it's valid
         selected_numbers = [int(x.strip()) for x in selected_stocks_input.split(',')]
         
-        # Ensure no more than 10 stocks are selected
+        # Ensure no more than 10 stocks are selected and no duplicate numbers
         if len(selected_numbers) > 10:
-            print("You can only select up to 10 stocks. Please try again.")
+            print("Error: You can only select up to 10 stocks. Please try again.")
+            continue
+        if len(selected_numbers) != len(set(selected_numbers)):  # Check for duplicates
+            print("Error: Duplicate stock numbers detected. Please choose unique numbers.")
             continue
         
         # Get the stock symbols from the selected numbers
         selected_stocks = [all_stocks[i - 1] for i in selected_numbers if 1 <= i <= len(all_stocks)]
         
         if not selected_stocks:
-            print("No valid stocks selected. Please try again.")
+            print("Error: No valid stocks selected. Please try again.")
             continue
         
         break  # Break if the input is valid
 
     except ValueError:
-        print("Invalid input. Please enter valid stock numbers.")
+        print("Error: Invalid input. Please enter valid stock numbers (e.g., 1, 2, 5).")
     except IndexError:
-        print("One or more of your stock selections were invalid. Please try again.")
+        print("Error: One or more of your stock selections were invalid. Please try again.")
 
 # Load daily returns for the selected stocks
 data_file = 'portfolio_data_last_5_years.csv'
