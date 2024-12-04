@@ -111,3 +111,10 @@ if not filtered_portfolios.empty:
 else:
     print("\nNo portfolios found within the specified risk tolerance.")
     plt.show()
+
+# Plot the Portfolio Weights for the optimal portfolios (Pie chart for selected portfolio)
+plt.figure(figsize=(8, 8))
+optimal_portfolio_weights = portfolio_weights[max_sharpe_idx]  # Use max Sharpe Ratio portfolio for example
+plt.pie(optimal_portfolio_weights, labels=stocks, autopct='%1.1f%%', startangle=140)
+plt.title("Portfolio Weights for the Max Sharpe Ratio Portfolio")
+plt.show()
