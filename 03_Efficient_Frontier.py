@@ -13,9 +13,6 @@ stocks = list(daily_returns.columns)
 # Number of portfolio simulations
 num_portfolios = 5000
 
-# Risk-free rate (assumed for Sharpe Ratio)
-risk_free_rate = 0.01
-
 # Initialize arrays to store results
 portfolio_returns = []
 portfolio_volatilities = []
