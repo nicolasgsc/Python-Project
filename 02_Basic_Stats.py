@@ -7,17 +7,6 @@ import numpy as np
 data_file = 'portfolio_data_last_5_years.csv'
 financial_data = pd.read_csv(data_file, index_col=0, parse_dates=True)
 
-# Define portfolio weights (ensure it matches the stocks in the data)
-portfolio_weights = {
-    'AAPL': 0.2,
-    'TSLA': 0.2,
-    'MSFT': 0.2,
-    'AMZN': 0.2,
-    'GOOG': 0.2
-}
-
-print("Financial data loaded successfully!")
-
 ## 2. Compute daily returns for each stock
 
 # Calculate daily percentage changes (returns)
