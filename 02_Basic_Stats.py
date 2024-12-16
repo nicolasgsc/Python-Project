@@ -8,7 +8,7 @@ import numpy as np
 data_file = 'portfolio_data_last_5_years.csv'
 financial_data = pd.read_csv(data_file, index_col=0, parse_dates=True)
 
-## 6. Compute daily returns for each stock
+## 2. Compute daily returns for each stock
 
 # Calculate daily percentage changes (returns)
 daily_returns = financial_data.pct_change().dropna()
@@ -16,7 +16,7 @@ daily_returns = financial_data.pct_change().dropna()
 print("\nDaily Returns (Head):")
 print(daily_returns.head())
 
-## 7. Compute key metrics for each stock
+## 3. Compute key metrics for each stock
 
 # Mean daily return
 mean_daily_return = daily_returns.mean()
