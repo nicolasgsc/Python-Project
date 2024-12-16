@@ -4,10 +4,11 @@ import numpy as np
 ## 1. Load financial data
 
 # Load the financial data from the previous step
+# Load the financial data from the previous step
 data_file = 'portfolio_data_last_5_years.csv'
 financial_data = pd.read_csv(data_file, index_col=0, parse_dates=True)
 
-## 2. Compute daily returns for each stock
+## 6. Compute daily returns for each stock
 
 # Calculate daily percentage changes (returns)
 daily_returns = financial_data.pct_change().dropna()
@@ -15,7 +16,7 @@ daily_returns = financial_data.pct_change().dropna()
 print("\nDaily Returns (Head):")
 print(daily_returns.head())
 
-## 3. Compute key metrics for each stock
+## 7. Compute key metrics for each stock
 
 # Mean daily return
 mean_daily_return = daily_returns.mean()
@@ -27,8 +28,9 @@ annualized_return = mean_daily_return * 252
 daily_volatility = daily_returns.std()
 annualized_volatility = daily_volatility * np.sqrt(252)
 
-# Sharpe ratio for each stock (assuming risk-free rate = 0)
-sharpe_ratios = annualized_return / annualized_volatility
+# Sharpe ratio for each stock
+excess_return = annualized_return - risk_free_rate
+sharpe_ratios = excess_return / annualized_volatility
 
 # Combine metrics into a DataFrame
 metrics = pd.DataFrame({
