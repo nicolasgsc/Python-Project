@@ -10,9 +10,10 @@ The python scripts run well in jupyter notebook (ideally copying and pasting any
 
 # Functionality:
 **02_Get_Financial_Data_and_Plot_Returns:**
+*Part 1:*
 The program retrieves historical stock prices and calculates an equal-weighted investment portfolio. It prompts the user to input up to 20 stock tickers from Yahoo Finance, validating each ticker's historical data availability and ensuring at least 3 years of trading history. The program calculates equal portfolio weights based on the number of valid stocks and fetches adjusted closing prices for each selected stock. After processing, the cleaned data is saved to a CSV file named 'portfolio_data_last_5_years.csv'. Additionally, the program retrieves the current U.S. Treasury Bill rate (^IRX) as the risk-free rate, displaying it or defaulting to 0% if retrieval fails.
 The program returns the head and tails of selected assets and the risk-free rate obtained.
-**Part 2:**
+*Part 2:*
 The second part analyzes financial stock data by computing key performance metrics. It first loads historical price data from a CSV file previously stored. Daily returns are calculated to assess stock performance. Key metrics such as mean daily return, annualized return, volatility, and Sharpe ratio are computed for each stock. The program then aggregates these metrics into a comprehensive summary.
 For the portfolio, daily and cumulative returns are calculated based on predefined weights. Annualized return, volatility, and the portfolio's Sharpe ratio are also determined. The returns of the individual stocks and the portfolio are subsequently plotted to prove that the volatility of a portfolio with two assets which have a correlation coefficient of less than 1 is lower than the volatility of the individual assets. The program also returns the first lines of calculated returns as well as summary statistics such as average daily returns and volatility which are also displayed annualized as well as the sharpe ratio of each asset. On portfolio level the annual return, volatility and sharpe ration are extracted.
 
