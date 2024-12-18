@@ -6,7 +6,7 @@ Investing can be a stressful endeavour. While the positive stock market return e
 Our Python program equips individual investors with the power to choose their optimal asset weightings based on Markowitz (1952) portfolio selection. We achieve this by combining Markowitz portfolio optimization with the concept of expected shortfall (ES). ES is the amount of money an investor stands to lose given an extreme (negative) event in public markets occurs. It is defined as a risk measure used to estimate the average loss of an investment portfolio in the worst-case scenario beyond a specified confidence level. To do this we assume historical returns to be reliable predictors of future returns when observing a reasonably long past time horizon, specified as 3 or more years. The trade-off was chosen to not exclude too many firms and funds that recently began trading and still obtain reliable statistical results. 
 
 # How to run: 
-The python scripts run well in jupyter notebook (ideally copying and pasting any inputs). It is necessary to run the programs in the prespecified order to ensure that the stored CSV file from the previous program is available for the next.
+The python scripts run well in jupyter notebook (ideally copying and pasting any inputs). It is necessary to run the programs in the prespecified order to ensure that the stored CSV file and any variables from the previous program are available for the next.
 
 # Functionality:
 **02_Get_Financial_Data_and_Plot_Returns:**
