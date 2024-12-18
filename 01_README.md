@@ -21,7 +21,7 @@ For the portfolio, daily and cumulative returns are calculated based on predefin
 
 
 **03_Efficient_Frontier:**
-The program performs a Monte Carlo simulation to identify optimal investment portfolios based on historical stock data. It loads daily returns from the CSV file created in 01 and uses random weight allocations to simulate 100,000 portfolios. For each portfolio, it calculates expected annual returns, volatility (risk), and the Sharpe ratio, considering a risk-free rate. The program stores these metrics and identifies portfolios with the maximum Sharpe ratio and minimum volatility. Finally, it visualizes the Efficient Frontier using a scatter plot, highlighting the optimal portfolios for risk-return trade-off analysis.
+The program performs a Monte Carlo simulation to identify optimal investment portfolios based on historical stock data. It loads daily returns from the CSV file created in 01 and uses random weight allocations to simulate 100,000 portfolios. For each portfolio, it calculates expected annual returns, volatility (risk), and the Sharpe ratio, considering the risk-free rate obtained in 02. The program stores these metrics and identifies portfolios with the maximum Sharpe ratio and minimum volatility. Finally, it visualizes the Efficient Frontier using a scatter plot, highlighting the optimal portfolios for risk-return trade-off analysis.
 
 <img width="838" alt="image" src="https://github.com/user-attachments/assets/1cbbddee-6a17-413e-988a-a9e6c0966bc9" />
 
