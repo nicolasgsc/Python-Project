@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 def portfolio_monthly_return_series(daily_returns, weights):
     portfolio_daily_returns = (daily_returns * weights).sum(axis=1)
-    monthly_returns = portfolio_daily_returns.resample('ME').sum()
+    monthly_returns = portfolio_daily_returns.resample('M').sum()
     return monthly_returns
 
 def compute_es(portfolio_returns, confidence_level=0.95):
