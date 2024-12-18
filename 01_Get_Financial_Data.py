@@ -90,7 +90,8 @@ except Exception as e:
     sys.exit()
 ## 3. Structure the data
 
-# Drop rows where all stock prices are NaN, this causes the whole dataset to be shortened when one of the assets is between 3 and 5 years old
+# Drop rows where all stock prices are NaN, this causes the whole dataset to be shortened when one of the assets is between 3 and 5 years old otherwise we get the whole 5 years of data
+
 all_data.dropna(how="all", inplace=True)
 
 # Drop columns (stocks) that have only NaN values
