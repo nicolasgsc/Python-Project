@@ -16,9 +16,10 @@ For the portfolio, daily and cumulative returns are calculated based on predefin
 The program returns the first lines of calculated returns as well as summary statistics such as average daily returns and volatility which are also displayed annualized as well as the sharpe ratio of each asset. On portfolio level the annual return, volatility and sharpe ration are extracted.
 
 03_Efficient_Frontier: 
-This Python program performs a Monte Carlo simulation to identify optimal investment portfolios based on historical stock data. It loads daily returns from the CSV file created in 01 and uses random weight allocations to simulate 100,000 portfolios. For each portfolio, it calculates expected annual returns, volatility (risk), and the Sharpe ratio, considering a risk-free rate. The program stores these metrics and identifies portfolios with the maximum Sharpe ratio and minimum volatility. Finally, it visualizes the Efficient Frontier using a scatter plot, highlighting the optimal portfolios for risk-return trade-off analysis.
+The third program performs a Monte Carlo simulation to identify optimal investment portfolios based on historical stock data. It loads daily returns from the CSV file created in 01 and uses random weight allocations to simulate 100,000 portfolios. For each portfolio, it calculates expected annual returns, volatility (risk), and the Sharpe ratio, considering a risk-free rate. The program stores these metrics and identifies portfolios with the maximum Sharpe ratio and minimum volatility. Finally, it visualizes the Efficient Frontier using a scatter plot, highlighting the optimal portfolios for risk-return trade-off analysis.
 
 04_Efficient_Frontier_with_ES_max_drawdown: 
+The program performs Expected Shortfall (ES) analysis for investment portfolios using historical stock returns. It prompts the user for portfolio size, desired confidence level, and maximum acceptable monthly drawdown. The program calculates ES by averaging the worst-performing monthly returns at the specified confidence level. It filters portfolios meeting the ES constraint and selects the one with the highest return. Visual outputs include the Efficient Frontier with feasible portfolios highlighted and the optimal portfolio's weights shown in a pie chart. Portfolio metrics and feasible portfolios are saved to CSV files for further analysis.
 
 
 
