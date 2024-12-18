@@ -72,17 +72,23 @@ print("\nPortfolio Metrics:")
 for key, value in portfolio_metrics.items():
     print(f"{key}: {value:.2%}")
 
-## 5. Save results to CSV
+## 5. Plot daily returns
 
-# Save individual stock metrics
-metrics.to_csv('individual_stock_metrics.csv')
-print("\nMetrics for individual stocks saved to 'individual_stock_metrics.csv'.")
+import matplotlib.pyplot as plt
+import numpy as np
 
-# Save portfolio daily and cumulative returns
-portfolio_returns = pd.DataFrame({
-    'Portfolio Daily Return': portfolio_daily_return,
-    'Portfolio Cumulative Return': portfolio_cumulative_return
-})
-portfolio_returns.to_csv('portfolio_returns.csv')
-print("Portfolio returns saved to 'portfolio_returns.csv'.")
+plt.figure(figsize=(14, 7))
 
+# Plot all individual stocks with transparency
+for stock in daily_returns.columns:
+    plt.plot(daily_returns[stock], alpha=0.3, linewidth=1, label=stock)
+
+# Overlay the portfolio returns with higher line width and label
+plt.plot(portfolio_daily_return, color='black', linewidth=2, label='Portfolio')
+
+plt.title("Daily Returns: All Individual Stocks vs. Portfolio")
+plt.xlabel("Date")
+plt.ylabel("Daily Return")
+plt.grid(True)
+plt.legend(loc='upper right', ncol=2, fontsize='small')
+plt.show()
