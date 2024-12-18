@@ -28,6 +28,16 @@ annualized_return = mean_daily_return * 252
 daily_volatility = daily_returns.std()
 annualized_volatility = daily_volatility * np.sqrt(252)
 
+# Fetch current risk-free rate from Yahoo Finance
+try:
+    risk_free_ticker = yf.Ticker("^IRX")
+    risk_free_data = risk_free_ticker.history(period="1d")
+    risk_free_rate = risk_free_data['Close'].iloc[-1] / 100  # Convert from percentage to decimal
+    print(f"\nCurrent Risk-Free Rate: {risk_free_rate:.2%}")
+except Exception as e:
+    print(f"Error fetching risk-free rate: {e}")
+    risk_free_rate = 0.0
+
 # Sharpe ratio for each stock
 excess_return = annualized_return - risk_free_rate
 sharpe_ratios = excess_return / annualized_volatility
