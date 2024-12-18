@@ -34,9 +34,9 @@ The program performs Expected Shortfall (ES) analysis for investment portfolios 
 
 
 # Disclaimer: 
-The program might have extensive run time due to the high number of portfolios being simulated.
-For certain asset selection and risk specification there might be no feasible portfolio available, this is not a coding mistake but simply down to the risk-return characteristics of the included assets. In case your assets do not match your risk tolerance, please consider including less risky assets in your portfolio.
-Our strong assumption of historical returns being representative for future returns requires us to have a minimum amount of data for each asset. We specified this to be at least 3 years, therefore any asset with less than 3 years of trading history cannot be used in our portfolio optimizer.
+1) The program might have extensive run time due to the high number of portfolios being simulated.
+2) For certain asset selection and risk specification there might be no feasible portfolio available, this is not a coding mistake but simply down to the risk-return characteristics of the included assets. In case your assets do not match your risk tolerance, please consider including less risky assets in your portfolio.
+3) Our strong assumption of historical returns being representative for future returns requires us to have a minimum amount of data for each asset. We specified this to be at least 3 years, therefore any asset with less than 3 years of trading history cannot be used in our portfolio optimizer.
 
 Sources: 
 Dimson et al. (2002): https://www.researchgate.net/publication/248160012_Triumph_of_the_optimists_101_years_of_global_investment_returns
