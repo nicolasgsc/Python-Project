@@ -1,4 +1,4 @@
-# Python Project: Portfolio Optimization Based on Investors Maximum Accepted Drawdown, Using Expected Shortfall
+# Python Project: Portfolio Optimization Based on Investors' Maximum Accepted Drawdown, Using Monthly Expected Shortfall
 # Background:
 Investing can be a stressful endeavour. While the positive stock market return expectation is not only broadly known but also scientifically documented (see Dimson et al. 2002), many potential investors shy away from the potential risks and fail to benefit from the economic miracle public markets provide. Others pay large fees to financial advisors to reduce the volatility of their portfolios. What if individuals could specify their: publicly traded securities and risk tolerance to obtain tailor-made portfolio weightings?
 
