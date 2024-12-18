@@ -10,11 +10,12 @@ import sys
 end_Date = pd.Timestamp(datetime.date.today())
 start_Date = end_Date - pd.DateOffset(years=5)
 
-def get_valid_tickers():
+def get_valid_tickers(): #Function to get up to 20 valid stock tickers from the user
     tickers = []
     print("Please enter up to 20 valid stock tickers from Yahoo Finance.")
     while len(tickers) < 20:
-        user_input = input(f"Enter ticker {len(tickers)+1} (or press Enter to finish): ").upper().strip()
+        user_input = input(f"Enter ticker {len(tickers)+1} (or press Enter to finish): ").upper().strip() 
+        #The user is being prompted for a new ticker up to 20 tickers but can press enter to finish his selection after having selected 2 assets
         if user_input == "":
             if len(tickers) > 1:
                 break
@@ -22,7 +23,7 @@ def get_valid_tickers():
                 print("You must enter at least two ticker.")
                 continue
         
-        if user_input in tickers:
+        if user_input in tickers: #The user can't enter the same ticker multiple times
             print(f"{user_input} has already been entered. Please enter a different ticker.")
             continue
 
@@ -89,7 +90,7 @@ except Exception as e:
     sys.exit()
 ## 3. Structure the data
 
-# Drop rows where all stock prices are NaN
+# Drop rows where all stock prices are NaN, this causes the whole dataset to be shortened when one of the assets is between 3 and 5 years old
 all_data.dropna(how="all", inplace=True)
 
 # Drop columns (stocks) that have only NaN values
@@ -113,10 +114,11 @@ else:
 
 # Fetch current risk-free rate from Yahoo Finance
 try:
-    risk_free_ticker = yf.Ticker("^IRX")
+    risk_free_ticker = yf.Ticker("^IRX") #Using the 13 week US treasury bill
     risk_free_data = risk_free_ticker.history(period="1d")
     risk_free_rate = risk_free_data['Close'].iloc[-1] / 100  # Convert from percentage to decimal
     print(f"\nCurrent Risk-Free Rate: {risk_free_rate:.2%}")
 except Exception as e:
     print(f"Error fetching risk-free rate: {e}")
-    risk_free_rate = 0.0
+    risk_free_rate = 0.0 # In case we fail to specify the risk free rate via treasury bills we will assume a risk free interest rate of 0
+    
