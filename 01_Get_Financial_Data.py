@@ -12,8 +12,8 @@ start_Date = end_Date - pd.DateOffset(years=5)
 
 def get_valid_tickers():
     tickers = []
-    print("Please enter up to 50 valid stock tickers from Yahoo Finance.")
-    while len(tickers) < 50:
+    print("Please enter up to 20 valid stock tickers from Yahoo Finance.")
+    while len(tickers) < 20:
         user_input = input(f"Enter ticker {len(tickers)+1} (or press Enter to finish): ").upper().strip()
         if user_input == "":
             if len(tickers) > 1:
