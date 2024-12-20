@@ -1,3 +1,6 @@
+### All files in one
+### 02_Get_Financial_Data_and_Plot_Returns
+
 import yfinance as yf
 import pandas as pd
 import numpy as np
@@ -221,6 +224,9 @@ plt.grid(True)
 plt.legend(loc='upper right', ncol=2, fontsize='small')
 plt.show()
 
+
+### 03_Efficient_Frontier
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -295,6 +301,9 @@ plt.title('Efficient Frontier')
 plt.xlabel('Volatility (Risk)')
 plt.ylabel('Return')
 plt.legend()
+
+
+### 04_Efficient_Frontier_with_ES_max_drawdown
 
 import numpy as np
 import pandas as pd
