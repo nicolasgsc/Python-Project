@@ -234,7 +234,7 @@ import matplotlib.pyplot as plt
 # Load daily returns
 data_file = 'portfolio_data_last_5_years.csv'
 financial_data = pd.read_csv(data_file, index_col=0, parse_dates=True)
-daily_returns = financial_data.pct_change().dropna()
+daily_returns = financial_data.pct_change(fill_method=None).dropna()
 
 # Define stocks
 stocks = list(daily_returns.columns)
